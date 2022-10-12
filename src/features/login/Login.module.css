@@ -1,8 +1,57 @@
 .container{
   width: 100%;
-  height: 100%;
 
-  color: #000;
-
-  background-color: coral;
 }
+.title{
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.formContainer{
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  box-sizing: border-box;
+  max-width: 413px;
+  height: 528px;
+  margin: 20px auto;
+  padding: 20px;
+
+  background-color: #fff;
+  border: 1px solid #0891e7;
+  border-radius: 10px;
+
+}
+.loginError,
+.emailError,
+.passwordError,
+.confirmPasswordError {
+  position: absolute;
+  top:60px;
+
+  display: flex;
+  justify-content: center;
+
+  width: 370px;
+
+  font-size: 14px;
+  font-style: italic;
+  color: red;
+}
+/*
+.loginError{
+  top:60px;
+}
+.emailError {
+  top: 60px;
+}
+.passwordError {
+  top: 60px;
+}
+.confirmPasswordError {
+  top: 60px;
+}*/
