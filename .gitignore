@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+### WebStorm/IntelliJ ###
+/.idea
+.idea
+
+# Optional npm cache directory
+.npm
+
+# Optional yarn cache directory
+.yarn
