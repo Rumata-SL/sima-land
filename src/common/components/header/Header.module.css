@@ -1,8 +1,20 @@
 .container{
-    width: 100%;
-    height: 60px;
+ /* position: fixed;
+  top:0;
+*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    color: #000;
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  padding: 0 10px;
 
-    background-color: rgba(244, 194, 194, 0.21);
+  color: #000;
+
+  background-color: #3a3a3b;
+}
+.svgBlock{
+
 }
