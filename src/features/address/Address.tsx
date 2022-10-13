@@ -1,6 +1,14 @@
 import React from 'react'
 
-import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material'
+import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material'
 import { useFormik } from 'formik'
 
 import style from './Address.module.css'
@@ -15,7 +23,6 @@ type FormikErrorType = {
 const styleBtn = {
   height: '50px',
   marginTop: '20px',
-  borderRadius: '30px',
   fontSize: '18px',
 }
 
@@ -31,14 +38,18 @@ export const Address = () => {
       const errors: FormikErrorType = {}
 
       if (!values.country) {
-        errors.country = 'Введите страну'
-      } else if (values.country.length >= 2) {
-        errors.country = 'Логин должен быть больше 2 символов...'
+        errors.country = '⚠ Введите страну'
+      } else if (!/^[A-ZА-ЯЁ]+$/i.test(values.country)) {
+        errors.country = '⚠ Название страны должно состоять из букв...'
+      } else if (values.country.length <= 2) {
+        errors.country = '⚠ Название страны должно быть больше 2 символов...'
       }
       if (!values.city) {
-        errors.city = 'Введите страну'
-      } else if (values.city.length >= 2) {
-        errors.city = 'Логин должен быть больше 2 символов...'
+        errors.city = '⚠ Введите город'
+      } else if (!/^[A-ZА-ЯЁ]+$/i.test(values.city)) {
+        errors.city = '⚠ Название города должно состоять из букв...'
+      } else if (values.city.length <= 2) {
+        errors.city = '⚠ Название города должно быть больше 2 символов...'
       }
 
       return errors
@@ -59,6 +70,13 @@ export const Address = () => {
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('country')}
+            endAdornment={
+              <InputAdornment position="end" title="Обязательное поле">
+                <IconButton color={'primary'}>
+                  <PriorityHighTwoToneIcon color="success" fontSize={'small'} />
+                </IconButton>
+              </InputAdornment>
+            }
           />
           {formik.errors.country && formik.touched.country && (
             <div className={style.countryError}>{formik.errors.country}</div>
@@ -73,6 +91,13 @@ export const Address = () => {
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('city')}
+            endAdornment={
+              <InputAdornment position="end" title="Обязательное поле">
+                <IconButton color={'primary'}>
+                  <PriorityHighTwoToneIcon color="success" fontSize={'small'} />
+                </IconButton>
+              </InputAdornment>
+            }
           />
           {formik.errors.city && formik.touched.city && (
             <div className={style.cityError}>{formik.errors.city}</div>
@@ -87,6 +112,13 @@ export const Address = () => {
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('street')}
+            endAdornment={
+              <InputAdornment position="end" title="Необязательное поле">
+                <IconButton color={'primary'}>
+                  <PriorityHighTwoToneIcon color="action" fontSize={'small'} />
+                </IconButton>
+              </InputAdornment>
+            }
           />
           {formik.errors.street && formik.touched.street && (
             <div className={style.streetError}>{formik.errors.street}</div>
@@ -101,6 +133,13 @@ export const Address = () => {
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('house')}
+            endAdornment={
+              <InputAdornment position="end" title="Необязательное поле">
+                <IconButton color={'primary'}>
+                  <PriorityHighTwoToneIcon color="action" fontSize={'small'} />
+                </IconButton>
+              </InputAdornment>
+            }
           />
           {formik.errors.house && formik.touched.house && (
             <div className={style.houseError}>{formik.errors.house}</div>

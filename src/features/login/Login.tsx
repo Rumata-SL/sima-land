@@ -25,7 +25,6 @@ type FormikErrorType = {
 const styleBtn = {
   height: '50px',
   marginTop: '20px',
-  borderRadius: '30px',
   fontSize: '18px',
 }
 
