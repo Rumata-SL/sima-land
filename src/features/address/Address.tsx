@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
 import {
@@ -10,6 +10,9 @@ import {
   OutlinedInput,
 } from '@mui/material'
 import { useFormik } from 'formik'
+import { Navigate } from 'react-router-dom'
+
+import { PATH } from '../../common/enum/path'
 
 import style from './Address.module.css'
 
@@ -27,6 +30,8 @@ const styleBtn = {
 }
 
 export const Address = () => {
+  const [isRegistered, setIsRegistered] = useState(false)
+
   const formik = useFormik({
     initialValues: {
       country: '',
@@ -54,8 +59,15 @@ export const Address = () => {
 
       return errors
     },
-    onSubmit: values => {},
+    onSubmit: values => {
+      setIsRegistered(true)
+      formik.resetForm()
+    },
   })
+
+  if (isRegistered) {
+    return <Navigate to={PATH.PHONE} />
+  }
 
   return (
     <div className={style.container}>
