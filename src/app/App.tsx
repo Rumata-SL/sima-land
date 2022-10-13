@@ -12,7 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
-        <Route path="/" element={<Navigate to={PATH.LOGIN} />} />
+        {/*<Route path="/" element={<Navigate to={PATH.LOGIN} />} />*/}
         <Route path={PATH.LOGIN} element={<Login />}></Route>
         <Route path={PATH.ADDRESS} element={<Address />}></Route>
         <Route path={PATH.PHONE} element={<Phone />}></Route>

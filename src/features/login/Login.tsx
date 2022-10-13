@@ -22,6 +22,13 @@ type FormikErrorType = {
   confirmPassword?: string
 }
 
+const styleBtn = {
+  height: '50px',
+  marginTop: '20px',
+  borderRadius: '30px',
+  fontSize: '18px',
+}
+
 export const Login = () => {
   const [valuePass, setValuePass] = useState({
     password: '',
@@ -43,24 +50,24 @@ export const Login = () => {
       const errors: FormikErrorType = {}
 
       if (!values.login) {
-        errors.login = 'Введите логин'
-      } else if (values.login.length <= 10) {
-        errors.login = 'Login must be more than 10 characters...'
+        errors.login = '⚠ Введите логин'
+      } else if (values.login.length <= 5) {
+        errors.login = '⚠ Логин должен быть больше 5 символов...'
       }
       if (!values.email) {
-        errors.email = 'Введите почту'
+        errors.email = '⚠ Введите почту'
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        errors.email = '⚠ Неверный адрес электронной почты'
       }
       if (!values.password) {
-        errors.password = 'Enter password'
+        errors.password = '⚠ Введите пароль'
       } else if (values.password.length <= 7) {
-        errors.password = 'Password must be more than 7 characters...'
+        errors.password = '⚠ Пароль должен быть больше 7 символов...'
       }
       if (!values.confirmPassword) {
-        errors.confirmPassword = 'Repeat  password'
+        errors.confirmPassword = '⚠ Повторите пароль'
       } else if (values.confirmPassword !== values.password) {
-        errors.confirmPassword = 'The password and confirmation password do not match'
+        errors.confirmPassword = '⚠ Пароль и пароль подтверждения не совпадают'
       }
 
       return errors
@@ -89,15 +96,14 @@ export const Login = () => {
   return (
     <div className={style.container}>
       <form className={style.formContainer} onSubmit={formik.handleSubmit}>
-        <div className={style.title}>Sign UP</div>
+        <div className={style.title}>Регистрация</div>
 
         <FormControl variant="outlined">
           <InputLabel color="primary">логин</InputLabel>
           <OutlinedInput
             id="login"
             type="login"
-            label={'login'}
-            // placeholder={'логин'}
+            label={'логин'}
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('login')}
@@ -111,7 +117,6 @@ export const Login = () => {
           <OutlinedInput
             id="email"
             type="email"
-            // placeholder={'Email'}
             label={'почта'}
             className={style.input}
             color={'primary'}
@@ -127,7 +132,6 @@ export const Login = () => {
             id="password"
             type={valuePass.showPass ? 'text' : 'password'}
             label={'пароль'}
-            // placeholder={'Password'}
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('password')}
@@ -151,7 +155,6 @@ export const Login = () => {
             id="confirmPassword"
             type={valuePassConfirm.showPassConfirm ? 'text' : 'password'}
             label={'повторите пароль'}
-            // placeholder={'Confirm password'}
             className={style.input}
             color={'primary'}
             {...formik.getFieldProps('confirmPassword')}
@@ -172,10 +175,12 @@ export const Login = () => {
             <div className={style.confirmPasswordError}>{formik.errors.confirmPassword}</div>
           )}
         </FormControl>
-        <Button variant="contained" type="submit">
+        {/*<div className={style.btnContainer}>*/}
+        <Button style={styleBtn} variant="contained" type="submit">
           Продолжить
         </Button>
-        {/*<Button variant="outlined">Продолжить</Button>*/}
+        {/*</div>*/}
+        {/*<Button variant="outlined" type="submit">Продолжить</Button>*/}
       </form>
     </div>
   )
