@@ -14,7 +14,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
-        {/*<Route path="/" element={<Navigate to={PATH.LOGIN} />} />*/}
+        <Route path="/" element={<Navigate to={PATH.PROFILE} />} />
         <Route path={PATH.PROFILE} element={<Profile />}></Route>
         <Route path={PATH.LOGIN} element={<Login />}></Route>
         <Route path={PATH.ADDRESS} element={<Address />}></Route>

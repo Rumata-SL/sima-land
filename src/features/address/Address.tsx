@@ -9,6 +9,7 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material'
+import { pink } from '@mui/material/colors'
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
@@ -85,7 +86,7 @@ export const Address = () => {
             endAdornment={
               <InputAdornment position="end" title="Обязательное поле">
                 <IconButton color={'primary'}>
-                  <PriorityHighTwoToneIcon color="success" fontSize={'small'} />
+                  <PriorityHighTwoToneIcon sx={{ color: pink[500] }} fontSize={'small'} />
                 </IconButton>
               </InputAdornment>
             }
@@ -106,7 +107,7 @@ export const Address = () => {
             endAdornment={
               <InputAdornment position="end" title="Обязательное поле">
                 <IconButton color={'primary'}>
-                  <PriorityHighTwoToneIcon color="success" fontSize={'small'} />
+                  <PriorityHighTwoToneIcon sx={{ color: pink[500] }} fontSize={'small'} />
                 </IconButton>
               </InputAdornment>
             }

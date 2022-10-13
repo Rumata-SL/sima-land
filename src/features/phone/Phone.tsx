@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
 import {
@@ -17,11 +17,14 @@ import {
   MuiTelInputCountry,
   matchIsValidTel,
 } from 'mui-tel-input'
+import { Navigate } from 'react-router-dom'
+
+import { PATH } from '../../common/enum/path'
 
 import style from './Phone.module.css'
 
 type FormikErrorType = {
-  code?: null | number
+  code?: string
 }
 
 const styleBtn = {
@@ -31,18 +34,36 @@ const styleBtn = {
 
 export const Phone = () => {
   const [value, setValue] = useState<string>('')
-  const [isValid, setIsValid] = useState(true)
+  const [isVerified, setIsVerified] = useState(false)
+
+  useEffect(() => {}, [value])
+
+  const changePhone = (str: string) => {
+    return str
+      .split('')
+      .filter(el => el !== ' ')
+      .join('')
+      .slice(-4)
+  }
 
   const formik = useFormik({
     initialValues: {
-      code: null,
+      code: '',
     },
     validate: values => {
       const errors: FormikErrorType = {}
 
+      if (changePhone(value) === values.code) {
+        setIsVerified(true)
+      } else {
+        errors.code = '⚠ Не верный код'
+      }
+
       return errors
     },
-    onSubmit: values => {},
+    onSubmit: values => {
+      formik.resetForm()
+    },
   })
 
   const handleChange = (newValue: string, info: MuiTelInputInfo) => {
@@ -53,7 +74,11 @@ export const Phone = () => {
   const excludedCountries: MuiTelInputCountry[] = ['UA', 'DE', 'EC']
 
   const getCodeHandler = () => {
-    setIsValid(matchIsValidTel(value))
+    alert(`Код подтверждения ${changePhone(value)}`)
+  }
+
+  if (isVerified) {
+    return <Navigate to={PATH.PROFILE} />
   }
 
   return (
@@ -70,9 +95,16 @@ export const Phone = () => {
             defaultCountry="RU"
             forceCallingCode
           />
-          {!isValid && <div className={style.phoneError}>{'Введите' + ' правильный номер'}</div>}
+          {!matchIsValidTel(value) && (
+            <div className={style.phoneError}>{'Введите' + ' правильный номер'}</div>
+          )}
         </FormControl>
-        <Button style={styleBtn} variant="contained" onClick={getCodeHandler}>
+        <Button
+          style={styleBtn}
+          variant="contained"
+          onClick={getCodeHandler}
+          disabled={!matchIsValidTel(value)}
+        >
           Получить код
         </Button>
 

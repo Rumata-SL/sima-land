@@ -18,6 +18,7 @@
   background-color: #fff;
   border: 1px solid #0891e7;
   border-radius: 10px;
+  box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.5);
 
 }
 .title{
@@ -27,7 +28,7 @@
   color: #0550b3;
   text-align: center;
 }
-
+.codeError,
 .phoneError {
   position: absolute;
   top:60px;
