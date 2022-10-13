@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  column-gap: 60px;
+  align-items: center;
+  justify-content: center;
+
+  height: 70vh;
+}
+
+.text {
+  max-width: 220px;
+
+  text-align: left;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 11px;
+
+  font-family: 'Montserrat', serif;
+  font-size: 50px;
+  font-weight: 600;
+  color: #3d48ed;
+}
+
+.subTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3d48ed;
+}
+

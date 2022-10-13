@@ -12,6 +12,9 @@ import {
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
+import { Navigate } from 'react-router-dom'
+
+import { PATH } from '../../common/enum/path'
 
 import style from './Login.module.css'
 
@@ -25,11 +28,12 @@ type FormikErrorType = {
 const styleBtn = {
   height: '50px',
   marginTop: '20px',
-  borderRadius: '30px',
   fontSize: '18px',
 }
 
 export const Login = () => {
+  const [isRegistered, setIsRegistered] = useState(false)
+
   const [valuePass, setValuePass] = useState({
     password: '',
     showPass: false,
@@ -72,7 +76,10 @@ export const Login = () => {
 
       return errors
     },
-    onSubmit: values => {},
+    onSubmit: values => {
+      setIsRegistered(true)
+      formik.resetForm()
+    },
   })
 
   const clickShowPass = useCallback(() => {
@@ -91,6 +98,10 @@ export const Login = () => {
 
   const MouseDownPass = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+  }
+
+  if (isRegistered) {
+    return <Navigate to={PATH.ADDRESS} />
   }
 
   return (

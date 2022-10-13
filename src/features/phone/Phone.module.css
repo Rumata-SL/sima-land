@@ -2,14 +2,6 @@
   width: 100%;
 
 }
-.title{
-  font-size: 26px;
-  font-weight: bold;
-  line-height: 30px;
-  color: #0550b3;
-  text-align: center;
-}
-
 .formContainer{
   position: relative;
 
@@ -19,7 +11,7 @@
 
   box-sizing: border-box;
   max-width: 413px;
-  height: 528px;
+  height: 450px;
   margin: 20px auto;
   padding: 20px;
 
@@ -28,15 +20,17 @@
   border-radius: 10px;
 
 }
-.loginError,
-.emailError,
-.passwordError,
-.confirmPasswordError {
+.title{
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #0550b3;
+  text-align: center;
+}
+
+.phoneError {
   position: absolute;
   top:60px;
-
-  /*display: flex;*/
-  /*justify-content: center;*/
 
   width: 370px;
 
@@ -44,7 +38,3 @@
   font-style: italic;
   color: red;
 }
-/*.btnContainer{*/
-/*  width: 370px;*/
-/*  padding: 20px 0 0;*/
-/*}*/
