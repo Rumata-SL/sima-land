@@ -37,7 +37,10 @@ Bootstrap/Mui/Antd и т. п. (или css/scss).\
 
 <div style="text-align: center">
 
-![example](src/assets/image/sima-land-scrin.png)
+![example](src/assets/image/sima-land-scrin-1.png)
+![example](src/assets/image/sima-land-scrin-2.png)
+![example](src/assets/image/sima-land-scrin-3.png)
+
 
 </div>
 
