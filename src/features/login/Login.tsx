@@ -5,11 +5,9 @@ import {
   Button,
   FormControl,
   IconButton,
-  Input,
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
@@ -17,20 +15,14 @@ import { Navigate } from 'react-router-dom'
 import { loginTC } from '../../bll/reducers/appReducer'
 import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
-
-import style from './Login.module.css'
+import { styleBtn } from '../style/styleBtn'
+import style from '../style/StyleForFeatures.module.css'
 
 type FormikErrorType = {
   login?: string
   email?: string
   password?: string
   confirmPassword?: string
-}
-
-const styleBtn = {
-  height: '50px',
-  marginTop: '20px',
-  fontSize: '18px',
 }
 
 export const Login = () => {
@@ -126,6 +118,7 @@ export const Login = () => {
             <div className={style.loginError}>{formik.errors.login}</div>
           )}
         </FormControl>
+
         <FormControl variant="outlined">
           <InputLabel color="primary">почта</InputLabel>
           <OutlinedInput
@@ -140,6 +133,7 @@ export const Login = () => {
             <div className={style.emailError}>{formik.errors.email}</div>
           )}
         </FormControl>
+
         <FormControl variant="outlined">
           <InputLabel color={'primary'}>пароль</InputLabel>
           <OutlinedInput
@@ -189,12 +183,10 @@ export const Login = () => {
             <div className={style.confirmPasswordError}>{formik.errors.confirmPassword}</div>
           )}
         </FormControl>
-        {/*<div className={style.btnContainer}>*/}
+
         <Button style={styleBtn} variant="contained" type="submit">
           Продолжить
         </Button>
-        {/*</div>*/}
-        {/*<Button variant="outlined" type="submit">Продолжить</Button>*/}
       </form>
     </div>
   )

@@ -34,6 +34,7 @@ const store = legacy_createStore(
   applyMiddleware(thunkMiddleware)
 )
 
+// Записываем state в localStorage при инициализации приложения
 localStorage.setItem('persistantState', JSON.stringify(store.getState()))
 
 store.subscribe(() => saveToLocalStorage(store.getState()))

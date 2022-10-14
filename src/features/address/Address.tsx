@@ -16,8 +16,8 @@ import { Navigate } from 'react-router-dom'
 import { addressTC } from '../../bll/reducers/appReducer'
 import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
-
-import style from './Address.module.css'
+import { styleBtn } from '../style/styleBtn'
+import style from '../style/StyleForFeatures.module.css'
 
 type FormikErrorType = {
   country?: string
@@ -26,16 +26,9 @@ type FormikErrorType = {
   house?: string
 }
 
-const styleBtn = {
-  height: '50px',
-  marginTop: '20px',
-  fontSize: '18px',
-}
-
 export const Address = () => {
   const dispatch = useAppDispatch()
   const isAddress = useAppSelector(state => state.app.isAddress)
-  const [isRegistered, setIsRegistered] = useState(false)
 
   const formik = useFormik({
     initialValues: {

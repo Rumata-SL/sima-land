@@ -32,12 +32,15 @@
 .loginError,
 .emailError,
 .passwordError,
-.confirmPasswordError {
+.confirmPasswordError,
+.countryError,
+.cityError,
+.streetError,
+.housePasswordError,
+.codeError,
+.phoneError{
   position: absolute;
   top:60px;
-
-  /*display: flex;*/
-  /*justify-content: center;*/
 
   width: 370px;
 
@@ -45,7 +48,3 @@
   font-style: italic;
   color: red;
 }
-/*.btnContainer{*/
-/*  width: 370px;*/
-/*  padding: 20px 0 0;*/
-/*}*/

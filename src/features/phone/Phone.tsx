@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
-import {
-  Button,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from '@mui/material'
+import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material'
 import { useFormik } from 'formik'
 import {
   MuiTelInput,
@@ -22,27 +14,23 @@ import { Navigate } from 'react-router-dom'
 import { verifiedTC } from '../../bll/reducers/appReducer'
 import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
-
-import style from './Phone.module.css'
+import { styleBtn } from '../style/styleBtn'
+import style from '../style/StyleForFeatures.module.css'
 
 type FormikErrorType = {
   code?: string
 }
 
-const styleBtn = {
-  height: '50px',
-  fontSize: '18px',
-}
-
 export const Phone = () => {
   const dispatch = useAppDispatch()
   const { isInitialized, isVerified } = useAppSelector(state => state.app)
+
   const [value, setValue] = useState<string>('')
-  // const [isVerified, setIsVerified] = useState(false)
 
   useEffect(() => {}, [value])
 
-  const changePhone = (str: string) => {
+  // получает 4 последние цифры номера
+  const getDigits = (str: string) => {
     return str
       .split('')
       .filter(el => el !== ' ')
@@ -57,7 +45,7 @@ export const Phone = () => {
     validate: values => {
       const errors: FormikErrorType = {}
 
-      if (changePhone(value) !== values.code) {
+      if (getDigits(value) !== values.code) {
         errors.code = '⚠ Не верный код'
       }
 
@@ -70,6 +58,7 @@ export const Phone = () => {
   })
 
   const handleChange = (newValue: string, info: MuiTelInputInfo) => {
+    // info - информация о номере телефона
     setValue(newValue)
   }
 
@@ -77,7 +66,7 @@ export const Phone = () => {
   const excludedCountries: MuiTelInputCountry[] = ['UA', 'DE', 'EC']
 
   const getCodeHandler = () => {
-    alert(`Код подтверждения ${changePhone(value)}`)
+    alert(`Код подтверждения ${getDigits(value)}`)
   }
 
   if (isInitialized && isVerified) {
@@ -88,13 +77,14 @@ export const Phone = () => {
     <div className={style.container}>
       <form onSubmit={formik.handleSubmit} className={style.formContainer}>
         <div className={style.title}>Подтверждение номера</div>
+
         <FormControl variant="outlined">
           <MuiTelInput
             value={value}
             onChange={handleChange}
             continents={continents}
             excludedCountries={excludedCountries}
-            preferredCountries={['RU', 'BE']}
+            preferredCountries={['RU', 'BY', 'KZ']}
             defaultCountry="RU"
             forceCallingCode
           />
@@ -102,6 +92,7 @@ export const Phone = () => {
             <div className={style.phoneError}>{'Введите' + ' правильный номер'}</div>
           )}
         </FormControl>
+
         <Button
           style={styleBtn}
           variant="contained"
@@ -111,7 +102,7 @@ export const Phone = () => {
           Получить код
         </Button>
 
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" style={{ marginTop: '30px' }}>
           <InputLabel color="primary">код</InputLabel>
           <OutlinedInput
             id="code"
@@ -125,6 +116,7 @@ export const Phone = () => {
             <div className={style.codeError}>{formik.errors.code}</div>
           )}
         </FormControl>
+
         <Button
           style={styleBtn}
           variant="contained"
