@@ -19,6 +19,8 @@ import {
 } from 'mui-tel-input'
 import { Navigate } from 'react-router-dom'
 
+import { verifiedTC } from '../../bll/reducers/appReducer'
+import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
 
 import style from './Phone.module.css'
@@ -33,8 +35,10 @@ const styleBtn = {
 }
 
 export const Phone = () => {
+  const dispatch = useAppDispatch()
+  const { isInitialized, isVerified } = useAppSelector(state => state.app)
   const [value, setValue] = useState<string>('')
-  const [isVerified, setIsVerified] = useState(false)
+  // const [isVerified, setIsVerified] = useState(false)
 
   useEffect(() => {}, [value])
 
@@ -53,15 +57,14 @@ export const Phone = () => {
     validate: values => {
       const errors: FormikErrorType = {}
 
-      if (changePhone(value) === values.code) {
-        setIsVerified(true)
-      } else {
+      if (changePhone(value) !== values.code) {
         errors.code = '⚠ Не верный код'
       }
 
       return errors
     },
     onSubmit: values => {
+      dispatch(verifiedTC(true, true))
       formik.resetForm()
     },
   })
@@ -77,7 +80,7 @@ export const Phone = () => {
     alert(`Код подтверждения ${changePhone(value)}`)
   }
 
-  if (isVerified) {
+  if (isInitialized && isVerified) {
     return <Navigate to={PATH.PROFILE} />
   }
 
@@ -122,7 +125,12 @@ export const Phone = () => {
             <div className={style.codeError}>{formik.errors.code}</div>
           )}
         </FormControl>
-        <Button style={styleBtn} variant="contained" type="submit">
+        <Button
+          style={styleBtn}
+          variant="contained"
+          type="submit"
+          disabled={!matchIsValidTel(value)}
+        >
           Завершить регистрацию
         </Button>
       </form>

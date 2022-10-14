@@ -1,7 +1,6 @@
-# Тестовое задание Sima-Land (Frontend) #
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Тестовое задание Sima-Land (Frontend) #
 ## Задание
 Реализуйте SPA приложение регистрации пользователя.
 Необходимо реализовать поэтапный механизм регистрации пользователей.
@@ -32,7 +31,15 @@ Bootstrap/Mui/Antd и т. п. (или css/scss).\
 Реализовать механизм, открывающий этап, на котором остановился пользователь 
 (при перезагрузке страницы).
 
+<hr>
 
+## Реализация
+
+<div style="text-align: center">
+
+![example](src/assets/image/sima-land-scrin.png)
+
+</div>
 
 ## В проекте установлены следующие библиотеки
 - **React**
@@ -41,6 +48,7 @@ Bootstrap/Mui/Antd и т. п. (или css/scss).\
 - **React-Router-dom**
 - **Redux-Thunk**
 - **Material UI**
+- **mui-tel-input**
 - **Formik**
 - **Incubator-cli**
 
