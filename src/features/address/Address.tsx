@@ -13,6 +13,8 @@ import { pink } from '@mui/material/colors'
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
+import { addressTC } from '../../bll/reducers/appReducer'
+import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
 
 import style from './Address.module.css'
@@ -31,6 +33,8 @@ const styleBtn = {
 }
 
 export const Address = () => {
+  const dispatch = useAppDispatch()
+  const isAddress = useAppSelector(state => state.app.isAddress)
   const [isRegistered, setIsRegistered] = useState(false)
 
   const formik = useFormik({
@@ -61,12 +65,12 @@ export const Address = () => {
       return errors
     },
     onSubmit: values => {
-      setIsRegistered(true)
+      dispatch(addressTC(values.country, values.city, true))
       formik.resetForm()
     },
   })
 
-  if (isRegistered) {
+  if (isAddress) {
     return <Navigate to={PATH.PHONE} />
   }
 

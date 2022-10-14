@@ -14,6 +14,8 @@ import {
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
+import { loginTC } from '../../bll/reducers/appReducer'
+import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
 
 import style from './Login.module.css'
@@ -32,7 +34,8 @@ const styleBtn = {
 }
 
 export const Login = () => {
-  const [isRegistered, setIsRegistered] = useState(false)
+  const dispatch = useAppDispatch()
+  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
 
   const [valuePass, setValuePass] = useState({
     password: '',
@@ -77,7 +80,7 @@ export const Login = () => {
       return errors
     },
     onSubmit: values => {
-      setIsRegistered(true)
+      dispatch(loginTC(values.login, values.email, true))
       formik.resetForm()
     },
   })
@@ -100,7 +103,7 @@ export const Login = () => {
     e.preventDefault()
   }
 
-  if (isRegistered) {
+  if (isLoggedIn) {
     return <Navigate to={PATH.ADDRESS} />
   }
 
