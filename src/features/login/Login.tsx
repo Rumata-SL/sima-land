@@ -13,8 +13,8 @@ import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
 import { loginTC } from '../../bll/reducers/appReducer'
-import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
+import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
 

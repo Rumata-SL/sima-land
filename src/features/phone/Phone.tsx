@@ -12,8 +12,8 @@ import {
 import { Navigate } from 'react-router-dom'
 
 import { verifiedTC } from '../../bll/reducers/appReducer'
-import { useAppDispatch, useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
+import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
 

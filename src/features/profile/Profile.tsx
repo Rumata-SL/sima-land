@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Navigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
+import { useAppSelector } from '../../utils/hooks/customHooks'
 
 export const Profile = () => {
   const isInitialized = useAppSelector(store => store.app.isInitialized)
