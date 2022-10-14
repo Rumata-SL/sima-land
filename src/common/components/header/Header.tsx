@@ -8,7 +8,9 @@ export const Header = () => {
   return (
     <div className={style.container}>
       <div className={style.svgBlock}>
-        <Logo />
+        <a href={'https://www.sima-land.ru/'} target={'_blank'} rel="noreferrer">
+          <Logo />
+        </a>
       </div>
     </div>
   )

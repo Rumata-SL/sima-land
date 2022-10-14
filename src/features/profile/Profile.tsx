@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Button } from '@mui/material'
-import { Navigate, NavLink } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../bll/types/types'
 import { PATH } from '../../common/enum/path'
@@ -14,10 +13,8 @@ export const Profile = () => {
   }
 
   return (
-    <div>
-      <NavLink to={PATH.LOGIN} style={{ textDecoration: 'none' }}>
-        <Button variant="contained">login</Button>
-      </NavLink>
+    <div style={{ textAlign: 'center' }}>
+      <h1>Profile</h1>
     </div>
   )
 }
