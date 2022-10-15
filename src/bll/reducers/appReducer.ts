@@ -80,6 +80,11 @@ export const verifiedTC =
     dispatch(setIsVerified(isInitialized, isVerified))
   }
 
+export const logOut = (): ThunkType => dispatch => {
+  dispatch(setLogin('', '', false))
+  dispatch(setAddress('', '', false))
+  dispatch(setIsVerified(false, false))
+}
 // Action Types
 export type AppActionType =
   | ReturnType<typeof setAppInitialized>
