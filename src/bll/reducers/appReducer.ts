@@ -38,6 +38,7 @@ export const setAppInitialized = (value: boolean) => {
     value,
   } as const
 }
+
 export const setLogin = (login: string, email: string, isLoggedIn: boolean) => {
   return {
     type: 'app/SET-LOGIN',
@@ -55,6 +56,7 @@ export const setAddress = (country: string, city: string, isAddress: boolean) =>
     isAddress,
   } as const
 }
+
 export const setIsVerified = (isInitialized: boolean, isVerified: boolean) => {
   return {
     type: 'app/SET-IS-VERIFIED',
@@ -69,11 +71,13 @@ export const loginTC =
   dispatch => {
     dispatch(setLogin(login, email, isLoggedIn))
   }
+
 export const addressTC =
   (country: string, city: string, isAddress: boolean): ThunkType =>
   dispatch => {
     dispatch(setAddress(country, city, isAddress))
   }
+
 export const verifiedTC =
   (isInitialized: boolean, isVerified: boolean): ThunkType =>
   dispatch => {
@@ -85,6 +89,7 @@ export const logOut = (): ThunkType => dispatch => {
   dispatch(setAddress('', '', false))
   dispatch(setIsVerified(false, false))
 }
+
 // Action Types
 export type AppActionType =
   | ReturnType<typeof setAppInitialized>
