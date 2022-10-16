@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
 import {
@@ -71,6 +71,7 @@ export const Address = () => {
     <div className={style.container}>
       <form className={style.formContainer} onSubmit={formik.handleSubmit}>
         <div className={style.title}>Адрес</div>
+
         <FormControl variant="outlined">
           <InputLabel color="primary">страна</InputLabel>
           <OutlinedInput
@@ -92,6 +93,7 @@ export const Address = () => {
             <div className={style.countryError}>{formik.errors.country}</div>
           )}
         </FormControl>
+
         <FormControl variant="outlined">
           <InputLabel color="primary">город</InputLabel>
           <OutlinedInput
@@ -113,6 +115,7 @@ export const Address = () => {
             <div className={style.cityError}>{formik.errors.city}</div>
           )}
         </FormControl>
+
         <FormControl variant="outlined">
           <InputLabel color="primary">улица</InputLabel>
           <OutlinedInput
@@ -134,6 +137,7 @@ export const Address = () => {
             <div className={style.streetError}>{formik.errors.street}</div>
           )}
         </FormControl>
+
         <FormControl variant="outlined">
           <InputLabel color="primary">дом</InputLabel>
           <OutlinedInput

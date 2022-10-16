@@ -1,10 +1,10 @@
 import { applyMiddleware, legacy_createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import { AppRootStateType, rootReducer } from '../reducers/rootReduser'
+import { RootStateType, rootReducer } from '../reducers/rootReduser'
 
 // Сохраняет state в LocalStorage
-function saveToLocalStorage(state: AppRootStateType) {
+function saveToLocalStorage(state: RootStateType) {
   try {
     const serialisedState = JSON.stringify(state)
 
@@ -37,6 +37,7 @@ const store = legacy_createStore(
 // Записываем state в localStorage при инициализации приложения
 localStorage.setItem('persistantState', JSON.stringify(store.getState()))
 
+// Подписчик
 store.subscribe(() => saveToLocalStorage(store.getState()))
 
 export default store
