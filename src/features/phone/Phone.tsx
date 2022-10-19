@@ -2,17 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material'
 import { useFormik } from 'formik'
-import {
-  MuiTelInput,
-  MuiTelInputContinent,
-  MuiTelInputInfo,
-  MuiTelInputCountry,
-  matchIsValidTel,
-} from 'mui-tel-input'
+import { MuiTelInput, MuiTelInputInfo, matchIsValidTel } from 'mui-tel-input'
 import { Navigate } from 'react-router-dom'
 
 import { verifiedTC } from '../../bll/reducers/appReducer'
 import { PATH } from '../../common/enum/path'
+import { getDigits } from '../../utils/helpers/getDigits'
+import { continents, excludedCountries } from '../../utils/helpers/muiTelFunction'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
@@ -28,15 +24,6 @@ export const Phone = () => {
   const [value, setValue] = useState<string>('')
 
   useEffect(() => {}, [value])
-
-  // получает 4 последние цифры номера
-  const getDigits = (str: string) => {
-    return str
-      .split('')
-      .filter(el => el !== ' ')
-      .join('')
-      .slice(-4)
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -61,9 +48,6 @@ export const Phone = () => {
     // info - информация о номере телефона
     setValue(newValue)
   }
-
-  const continents: MuiTelInputContinent[] = ['EU']
-  const excludedCountries: MuiTelInputCountry[] = ['UA', 'DE', 'EC']
 
   const getCodeHandler = () => {
     alert(`Код подтверждения ${getDigits(value)}`)
