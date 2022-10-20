@@ -1,23 +1,30 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { Avatar, Button } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
-import { logOut } from '../../bll/reducers/appReducer'
-import { PATH } from '../../common/enum/path'
+import { logOut } from '../../reducers/appReducer'
+import { selectApp } from '../../selectors/selectors'
+import { withRedirectIfBlank } from '../../utils/hoc/WithRedirect'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import style from '../style/StyleForFeatures.module.css'
 
-export const Profile = () => {
+type ProfilePropsType = {
+  path: string
+}
+const Profile: FC<ProfilePropsType> = props => {
+  const { path } = props
+
+  const { isInitialized, login } = useAppSelector(selectApp)
+
   const dispatch = useAppDispatch()
-  const { login, isInitialized } = useAppSelector(store => store.app)
 
   const logOutHandler = () => {
     dispatch(logOut())
   }
 
   if (!isInitialized) {
-    return <Navigate to={PATH.LOGIN} />
+    return <Navigate to={path}></Navigate>
   }
 
   return (
@@ -36,3 +43,5 @@ export const Profile = () => {
     </div>
   )
 }
+
+export default withRedirectIfBlank()(Profile)
