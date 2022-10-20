@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material'
 import { useFormik } from 'formik'
 import { MuiTelInput, MuiTelInputInfo, matchIsValidTel } from 'mui-tel-input'
 import { Navigate } from 'react-router-dom'
 
-import { verifiedTC } from '../../bll/reducers/appReducer'
-import { PATH } from '../../common/enum/path'
+import { verifiedTC } from '../../reducers/appReducer'
+import { selectApp } from '../../selectors/selectors'
 import { getDigits } from '../../utils/helpers/getDigits'
 import { continents, excludedCountries } from '../../utils/helpers/muiTelFunction'
+import { withRedirectIfBlank } from '../../utils/hoc/WithRedirect'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
@@ -17,9 +18,13 @@ type FormikErrorType = {
   code?: string
 }
 
-export const Phone = () => {
+type PhonePropsType = {
+  path: string
+}
+const Phone: FC<PhonePropsType> = props => {
+  const { path } = props
   const dispatch = useAppDispatch()
-  const { isInitialized, isVerified } = useAppSelector(state => state.app)
+  const { isInitialized, isVerified } = useAppSelector(selectApp)
 
   const [value, setValue] = useState<string>('')
 
@@ -54,7 +59,7 @@ export const Phone = () => {
   }
 
   if (isInitialized && isVerified) {
-    return <Navigate to={PATH.PROFILE} />
+    return <Navigate to={path}></Navigate>
   }
 
   return (
@@ -113,3 +118,5 @@ export const Phone = () => {
     </div>
   )
 }
+
+export default withRedirectIfBlank()(Phone)

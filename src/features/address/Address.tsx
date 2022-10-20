@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import PriorityHighTwoToneIcon from '@mui/icons-material/PriorityHighTwoTone'
 import {
@@ -13,8 +13,9 @@ import { pink } from '@mui/material/colors'
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
-import { addressTC } from '../../bll/reducers/appReducer'
-import { PATH } from '../../common/enum/path'
+import { addressTC } from '../../reducers/appReducer'
+import { selectApp } from '../../selectors/selectors'
+import { withRedirectIfBlank } from '../../utils/hoc/WithRedirect'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
@@ -26,9 +27,13 @@ type FormikErrorType = {
   house?: string
 }
 
-export const Address = () => {
+type AddressPropsType = {
+  path: string
+}
+const Address: FC<AddressPropsType> = props => {
+  const { path } = props
   const dispatch = useAppDispatch()
-  const isAddress = useAppSelector(state => state.app.isAddress)
+  const { isAddress } = useAppSelector(selectApp)
 
   const formik = useFormik({
     initialValues: {
@@ -64,7 +69,7 @@ export const Address = () => {
   })
 
   if (isAddress) {
-    return <Navigate to={PATH.PHONE} />
+    return <Navigate to={path}></Navigate>
   }
 
   return (
@@ -167,3 +172,5 @@ export const Address = () => {
     </div>
   )
 }
+
+export default withRedirectIfBlank()(Address)

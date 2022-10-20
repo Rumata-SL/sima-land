@@ -2,7 +2,8 @@ import React from 'react'
 
 import { Button } from '@mui/material'
 
-import { logOut } from '../../../bll/reducers/appReducer'
+import { logOut } from '../../../reducers/appReducer'
+import { selectApp } from '../../../selectors/selectors'
 import { useAppDispatch, useAppSelector } from '../../../utils/hooks/customHooks'
 import { Logo } from '../logo/Logo'
 
@@ -10,7 +11,7 @@ import style from './Header.module.css'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
-  const isInitialized = useAppSelector(store => store.app.isInitialized)
+  const isInitialized = useAppSelector(selectApp)
 
   const logOutHandler = () => {
     dispatch(logOut())

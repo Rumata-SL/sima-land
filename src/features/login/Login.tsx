@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
@@ -12,8 +12,9 @@ import {
 import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
-import { loginTC } from '../../bll/reducers/appReducer'
-import { PATH } from '../../common/enum/path'
+import { loginTC } from '../../reducers/appReducer'
+import { selectApp } from '../../selectors/selectors'
+import { withRedirectIfBlank } from '../../utils/hoc/WithRedirect'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/customHooks'
 import { styleBtn } from '../style/styleBtn'
 import style from '../style/StyleForFeatures.module.css'
@@ -25,9 +26,15 @@ type FormikErrorType = {
   confirmPassword?: string
 }
 
-export const Login = () => {
+type LoginPropsType = {
+  path: string
+}
+
+const Login: FC<LoginPropsType> = props => {
+  const { path } = props
+
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.app.isLoggedIn)
+  const { isLoggedIn } = useAppSelector(selectApp)
 
   const [valuePass, setValuePass] = useState({
     password: '',
@@ -96,7 +103,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    return <Navigate to={PATH.ADDRESS} />
+    return <Navigate to={path}></Navigate>
   }
 
   return (
@@ -191,3 +198,5 @@ export const Login = () => {
     </div>
   )
 }
+
+export default withRedirectIfBlank()(Login)
