@@ -11,7 +11,7 @@ import style from './Header.module.css'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
-  const isInitialized = useAppSelector(selectApp)
+  const { isInitialized } = useAppSelector(selectApp)
 
   const logOutHandler = () => {
     dispatch(logOut())
