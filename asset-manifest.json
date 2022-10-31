@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/sima-land/static/css/main.6f5cd144.css",
-    "main.js": "/sima-land/static/js/main.5a9df408.js",
+    "main.js": "/sima-land/static/js/main.d7ab9158.js",
     "static/js/787.ce774bde.chunk.js": "/sima-land/static/js/787.ce774bde.chunk.js",
     "static/media/404.svg": "/sima-land/static/media/404.f26b506f65343dfc245b0e141dbfbcc1.svg",
     "index.html": "/sima-land/index.html",
     "main.6f5cd144.css.map": "/sima-land/static/css/main.6f5cd144.css.map",
-    "main.5a9df408.js.map": "/sima-land/static/js/main.5a9df408.js.map",
+    "main.d7ab9158.js.map": "/sima-land/static/js/main.d7ab9158.js.map",
     "787.ce774bde.chunk.js.map": "/sima-land/static/js/787.ce774bde.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6f5cd144.css",
-    "static/js/main.5a9df408.js"
+    "static/js/main.d7ab9158.js"
   ]
 }
