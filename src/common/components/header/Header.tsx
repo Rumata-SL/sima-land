@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Button } from '@mui/material'
 
@@ -12,6 +12,8 @@ import style from './Header.module.css'
 export const Header = () => {
   const dispatch = useAppDispatch()
   const { isInitialized } = useAppSelector(selectApp)
+
+  useEffect(() => {}, [isInitialized])
 
   const logOutHandler = () => {
     dispatch(logOut())
